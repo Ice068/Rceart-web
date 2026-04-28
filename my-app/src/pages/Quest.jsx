@@ -6,61 +6,36 @@ function Quest() {
   const user = localStorage.getItem("user")
 
   const [completed, setCompleted] = useState([])
-  const [exp, setExp] = useState(0)
 
   // 🔒 check login
   useEffect(() => {
     if (!user) navigate("/")
   }, [user, navigate])
 
-  // 📥 โหลดข้อมูล (กันพัง)
+  // 📥 โหลด progress
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("gameData")
-
-      const data = raw
-        ? JSON.parse(raw)
-        : { completed: [], exp: 0 }
-
-      setCompleted(data.completed || [])
-      setExp(data.exp || 0)
-
-    } catch (error) {
-      console.error("โหลด gameData พัง:", error)
-
-      // fallback กันหน้าโล่ง
-      setCompleted([])
-      setExp(0)
+    const data = JSON.parse(localStorage.getItem("gameData")) || {
+      completed: []
     }
+    setCompleted(data.completed)
   }, [])
-
-  // 💾 save data
-  const saveData = (newCompleted, newExp) => {
-    localStorage.setItem(
-      "gameData",
-      JSON.stringify({
-        completed: newCompleted,
-        exp: newExp
-      })
-    )
-  }
 
   // 📊 Quest list
   const quests = [
-    { id: "lesson1_done", title: "🧱 HTML Structure", desc: "สร้างโครงสร้าง HTML", exp: 50, next: null },
-    { id: "lesson2_done", title: "🔗 Link", desc: "สร้างลิงก์", exp: 50, next: "lesson1_done" },
-    { id: "lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "lesson2_done" },
-    { id: "lesson4_done", title: "Sidebar", desc: "สร้าง Sidebar", exp: 30, next: "lesson3_done" },
-    { id: "lesson5_done", title: "Footer", desc: "สร้าง Footer", exp: 20, next: "lesson4_done" },
-    { id: "lesson6_done", title: "Navbar", desc: "สร้าง Navbar", exp: 40, next: "lesson5_done" },
-    { id: "lesson7_done", title: "Image", desc: "เพิ่มรูปภาพ", exp: 30, next: "lesson6_done" },
-    { id: "lesson8_done", title: "List", desc: "สร้างรายการ", exp: 20, next: "lesson7_done" },
-    { id: "lesson9_done", title: "Button", desc: "สร้างปุ่ม", exp: 20, next: "lesson8_done" },
-    { id: "lesson10_done", title: "Div / Section", desc: "แบ่งส่วนหน้าเว็บ", exp: 20, next: "lesson9_done" },
-    { id: "lesson11_done", title: "Table", desc: "สร้างตาราง", exp: 30, next: "lesson10_done" },
-    { id: "lesson12_done", title: "Media", desc: "วิดีโอ/เสียง", exp: 30, next: "lesson11_done" },
-    { id: "boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "lesson12_done" },
-    { id: "boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "lesson12_done" },
+    { id: "lesson1_done", title: "🧱 HTML Structure", desc: "สร้างโครงสร้าง HTML", exp: 50, next: null, path: "/lesson1" },
+    { id: "lesson2_done", title: "🔗 Link", desc: "สร้างลิงก์", exp: 50, next: "lesson1_done", path: "/lesson2" },
+    { id: "lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "lesson2_done", path: "/lesson3" },
+    { id: "lesson4_done", title: "Sidebar", desc: "สร้าง Sidebar", exp: 30, next: "lesson3_done", path: "/lesson4" },
+    { id: "lesson5_done", title: "Footer", desc: "สร้าง Footer", exp: 20, next: "lesson4_done", path: "/lesson5" },
+    { id: "lesson6_done", title: "Navbar", desc: "สร้าง Navbar", exp: 40, next: "lesson5_done", path: "/lesson6" },
+    { id: "lesson7_done", title: "Image", desc: "เพิ่มรูปภาพ", exp: 30, next: "lesson6_done", path: "/lesson7" },
+    { id: "lesson8_done", title: "List", desc: "สร้างรายการ", exp: 20, next: "lesson7_done", path: "/lesson8" },
+    { id: "lesson9_done", title: "Button", desc: "สร้างปุ่ม", exp: 20, next: "lesson8_done", path: "/lesson9" },
+    { id: "lesson10_done", title: "Div / Section", desc: "แบ่งส่วนหน้าเว็บ", exp: 20, next: "lesson9_done", path: "/lesson10" },
+    { id: "lesson11_done", title: "Table", desc: "สร้างตาราง", exp: 30, next: "lesson10_done", path: "/lesson11" },
+    { id: "lesson12_done", title: "Media", desc: "วิดีโอ/เสียง", exp: 30, next: "lesson11_done", path: "/lesson12" },
+    { id: "boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "lesson12_done", path: "/boss1" },
+    { id: "boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "lesson12_done", path: "/boss2" },
   ]
 
   // 🔓 เช็ค unlock
@@ -69,21 +44,13 @@ function Quest() {
     return completed.includes(quest.next)
   }
 
-  // 🎮 รับ EXP (mockup)
-  const completeQuest = (quest) => {
+  // 🎮 ไปหน้า lesson
+  const goQuest = (quest) => {
     if (!isUnlocked(quest)) return
-    if (completed.includes(quest.id)) return
-
-    const newCompleted = [...completed, quest.id]
-    const newExp = exp + quest.exp
-
-    setCompleted(newCompleted)
-    setExp(newExp)
-    saveData(newCompleted, newExp)
-
-    alert(`🎉 ได้รับ ${quest.exp} EXP!`)
+    navigate(quest.path)
   }
 
+  // 🚪 logout
   const logout = () => {
     localStorage.clear()
     navigate("/")
@@ -101,27 +68,14 @@ function Quest() {
           </h1>
 
           <div className="space-y-3">
-            <div
-              onClick={() => navigate("/Dashboard")}
-              className="hover:bg-white/20 p-2 rounded cursor-pointer"
-            >
-              🏠 ฐานบัญชาการ
-            </div>
-
-            <div className="bg-white/25 p-2 rounded">
-              ⚔️ ภารกิจ
-            </div>
-            <div 
-            onClick={() => navigate("/simcode")}
-            className="hover:bg-white/20 p-2 rounded cursor-pointer">💻 จำลองโค้ด</div>
+            <div onClick={() => navigate("/dashboard")} className="hover:bg-white/20 p-2 rounded cursor-pointer">🏠 ฐานบัญชาการ</div>
+            <div className="bg-white/25 p-2 rounded">⚔️ ภารกิจ</div>
+            <div className="hover:bg-white/20 p-2 rounded cursor-pointer">💻 จำลองโค้ด</div>
             <div className="hover:bg-white/20 p-2 rounded cursor-pointer">📊 ข้อมูล</div>
           </div>
         </div>
 
-        <button
-          onClick={logout}
-          className="bg-red-500 hover:bg-red-600 p-2 rounded-lg"
-        >
+        <button onClick={logout} className="bg-red-500 hover:bg-red-600 p-2 rounded-lg">
           ออกจากระบบ
         </button>
       </div>
@@ -129,13 +83,9 @@ function Quest() {
       {/* Main */}
       <div className="flex-1 p-6 overflow-auto">
 
-        <h1 className="text-2xl font-bold mb-2 text-gray-700">
+        <h1 className="text-2xl font-bold mb-6 text-gray-700">
           ⚔️ ภารกิจของคุณ
         </h1>
-
-        <p className="mb-6 text-purple-600 font-semibold">
-          EXP: {exp}
-        </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
 
@@ -146,7 +96,7 @@ function Quest() {
             return (
               <div
                 key={q.id}
-                className={`p-4 rounded-xl shadow border ${
+                className={`p-4 rounded-xl shadow-md border ${
                   unlocked ? "bg-white" : "bg-gray-200 opacity-60"
                 }`}
               >
@@ -159,7 +109,7 @@ function Quest() {
                   </span>
 
                   <button
-                    onClick={() => completeQuest(q)}
+                    onClick={() => goQuest(q)}
                     disabled={!unlocked}
                     className={`px-3 py-1 rounded text-white ${
                       done
@@ -169,7 +119,7 @@ function Quest() {
                         : "bg-gray-400"
                     }`}
                   >
-                    {done ? "✔ สำเร็จ" : unlocked ? "รับ EXP" : "🔒 Locked"}
+                    {done ? "✔ สำเร็จ" : unlocked ? "ลุยเลย 🚀" : "🔒 Locked"}
                   </button>
                 </div>
               </div>
