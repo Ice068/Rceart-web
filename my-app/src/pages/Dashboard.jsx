@@ -28,8 +28,12 @@ function Dashboard() {
           </h1>
 
           <div className="space-y-3">
-            <div className="bg-white/25 p-2 rounded">🏠 ฐานบัญชาการ</div>
-            <div className="hover:bg-white/20 p-2 rounded cursor-pointer">⚔️ ภารกิจ</div>
+            <div 
+            onClick={() => navigate("/Dashboard")}
+            className="bg-white/25 p-2 rounded">🏠 ฐานบัญชาการ</div>
+            <div 
+            onClick={() => navigate("/Quest")}
+            className="hover:bg-white/20 p-2 rounded cursor-pointer">⚔️ ภารกิจ</div>
             <div className="hover:bg-white/20 p-2 rounded cursor-pointer">💻 จำลองโค้ด</div>
             <div className="hover:bg-white/20 p-2 rounded cursor-pointer">📊 ข้อมูล</div>
           </div>
