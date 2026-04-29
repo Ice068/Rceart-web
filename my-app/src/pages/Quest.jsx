@@ -34,20 +34,20 @@ function Quest() {
 
   // 📊 Quest list (เพิ่ม path)
   const quests = [
-    { id: "lesson1_done", title: "🧱 HTML Structure", desc: "สร้างโครงสร้าง HTML", exp: 50, next: null, path: "/lesson1" },
-    { id: "lesson2_done", title: "🔗 Link", desc: "สร้างลิงก์", exp: 50, next: "lesson1_done", path: "/lesson2" },
-    { id: "lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "lesson2_done", path: "/lesson3" },
-    { id: "lesson4_done", title: "Sidebar", desc: "สร้าง Sidebar", exp: 30, next: "lesson3_done", path: "/lesson4" },
-    { id: "lesson5_done", title: "Footer", desc: "สร้าง Footer", exp: 20, next: "lesson4_done", path: "/lesson5" },
-    { id: "lesson6_done", title: "Navbar", desc: "สร้าง Navbar", exp: 40, next: "lesson5_done", path: "/lesson6" },
-    { id: "lesson7_done", title: "Image", desc: "เพิ่มรูปภาพ", exp: 30, next: "lesson6_done", path: "/lesson7" },
-    { id: "lesson8_done", title: "List", desc: "สร้างรายการ", exp: 20, next: "lesson7_done", path: "/lesson8" },
-    { id: "lesson9_done", title: "Button", desc: "สร้างปุ่ม", exp: 20, next: "lesson8_done", path: "/lesson9" },
-    { id: "lesson10_done", title: "Div / Section", desc: "แบ่งส่วนหน้าเว็บ", exp: 20, next: "lesson9_done", path: "/lesson10" },
-    { id: "lesson11_done", title: "Table", desc: "สร้างตาราง", exp: 30, next: "lesson10_done", path: "/lesson11" },
-    { id: "lesson12_done", title: "Media", desc: "วิดีโอ/เสียง", exp: 30, next: "lesson11_done", path: "/lesson12" },
-    { id: "boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "lesson12_done", path: "/boss1" },
-    { id: "boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "lesson12_done", path: "/boss2" },
+    { id: "Lesson1_done", title: "🧱 HTML Structure", desc: "สร้างโครงสร้าง HTML", exp: 50, next: null, path: "/Lesson1" },
+    { id: "Lesson2_done", title: "🔗 Link", desc: "สร้างลิงก์", exp: 50, next: "Lesson1_done", path: "/Lesson2" },
+    { id: "Lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "Lessonn2_done", path: "/Lesson3" },
+    { id: "Lesson4_done", title: "Sidebar", desc: "สร้าง Sidebar", exp: 30, next: "Lesson3_done", path: "/Lesson4" },
+    { id: "Lesson5_done", title: "Footer", desc: "สร้าง Footer", exp: 20, next: "Lesson4_done", path: "/Lesson5" },
+    { id: "Lesson6_done", title: "Navbar", desc: "สร้าง Navbar", exp: 40, next: "Lesson5_done", path: "/Lesson6" },
+    { id: "Lesson7_done", title: "Image", desc: "เพิ่มรูปภาพ", exp: 30, next: "Lesson6_done", path: "/Lesson7" },
+    { id: "Lesson8_done", title: "List", desc: "สร้างรายการ", exp: 20, next: "Lesson7_done", path: "/Lesson8" },
+    { id: "Lesson9_done", title: "Button", desc: "สร้างปุ่ม", exp: 20, next: "Lesson8_done", path: "/Lesson9" },
+    { id: "Lesson10_done", title: "Div / Section", desc: "แบ่งส่วนหน้าเว็บ", exp: 20, next: "Lesson9_done", path: "/Lesson10" },
+    { id: "Lesson11_done", title: "Table", desc: "สร้างตาราง", exp: 30, next: "Lesson10_done", path: "/Lesson11" },
+    { id: "Lesson12_done", title: "Media", desc: "วิดีโอ/เสียง", exp: 30, next: "Lesson11_done", path: "/Lesson12" },
+    { id: "boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "Lesson12_done", path: "/boss1" },
+    { id: "boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "Lesson12_done", path: "/boss2" },
   ]
 
   // 🔓 เช็ค unlock
