@@ -13,17 +13,31 @@ function Quest() {
     if (!user) navigate("/")
   }, [user, navigate])
 
-  // 📥 โหลดข้อมูล
+  // 📥 โหลดข้อมูล (แก้แล้ว)
   useEffect(() => {
     try {
       const raw = localStorage.getItem("gameData")
 
-      const data = raw
-        ? JSON.parse(raw)
-        : { completed: [], exp: 0 }
+      if (!raw) {
+        setCompleted([])
+        setExp(0)
+        return
+      }
 
-      setCompleted(data.completed || [])
-      setExp(data.exp || 0)
+      const parsed = JSON.parse(raw)
+
+      // ✅ กัน error ตรงนี้
+      const safeCompleted = Array.isArray(parsed.completed)
+        ? parsed.completed
+        : []
+
+      const safeExp =
+        typeof parsed.exp === "number"
+          ? parsed.exp
+          : 0
+
+      setCompleted(safeCompleted)
+      setExp(safeExp)
 
     } catch (error) {
       console.error("โหลด gameData พัง:", error)
@@ -32,11 +46,11 @@ function Quest() {
     }
   }, [])
 
-  // 📊 Quest list (เพิ่ม path)
+  // 📊 Quest list
   const quests = [
     { id: "Lesson1_done", title: "🧱 HTML Structure", desc: "สร้างโครงสร้าง HTML", exp: 50, next: null, path: "/Lesson1" },
     { id: "Lesson2_done", title: "🔗 Link", desc: "สร้างลิงก์", exp: 50, next: "Lesson1_done", path: "/Lesson2" },
-    { id: "Lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "Lessonn2_done", path: "/Lesson3" },
+    { id: "Lesson3_done", title: "🔤 Heading", desc: "H1 - H6", exp: 20, next: "Lesson2_done", path: "/Lesson3" },
     { id: "Lesson4_done", title: "Sidebar", desc: "สร้าง Sidebar", exp: 30, next: "Lesson3_done", path: "/Lesson4" },
     { id: "Lesson5_done", title: "Footer", desc: "สร้าง Footer", exp: 20, next: "Lesson4_done", path: "/Lesson5" },
     { id: "Lesson6_done", title: "Navbar", desc: "สร้าง Navbar", exp: 40, next: "Lesson5_done", path: "/Lesson6" },
@@ -74,7 +88,7 @@ function Quest() {
 
           <div className="space-y-3">
             <div
-              onClick={() => navigate("/dashboard")} // ✅ แก้ตัวเล็ก
+              onClick={() => navigate("/dashboard")}
               className="hover:bg-white/20 p-2 rounded cursor-pointer"
             >
               🏠 ฐานบัญชาการ
@@ -138,7 +152,7 @@ function Quest() {
                   </span>
 
                   <button
-                    onClick={() => navigate(q.path)} // ✅ ไป lesson
+                    onClick={() => navigate(q.path)}
                     disabled={!unlocked}
                     className={`px-3 py-1 rounded text-white ${
                       done
