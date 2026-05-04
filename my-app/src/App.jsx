@@ -6,6 +6,8 @@ import SimCode from "./pages/SimCode"
 import Lesson1 from "./pages/Lesson1"
 import Lesson2 from "./pages/Lesson2"
 import Lesson3 from "./pages/Lesson3"
+import Lesson4 from "./pages/Lesson4"
+import Lesson5 from "./pages/Lesson5"
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
          <Route path="Lesson1" element={<Lesson1 />} />
          <Route path="Lesson2" element={<Lesson2 />} />
          <Route path="Lesson3" element={<Lesson3 />} />
+         <Route path="Lesson4" element={<Lesson4 />} />
+         <Route path="Lesson5" element={<Lesson5 />} />
       </Routes>
     </BrowserRouter>
   )
