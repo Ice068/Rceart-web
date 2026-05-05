@@ -10,6 +10,7 @@ import Lesson4 from "./pages/Lesson4"
 import Lesson5 from "./pages/Lesson5"
 import Lesson6 from "./pages/Lesson6"
 import Lesson7 from "./pages/Lesson7"
+import Lesson8 from "./pages/Lesson8"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
          <Route path="Lesson5" element={<Lesson5 />} />
          <Route path="Lesson6" element={<Lesson6 />} />
          <Route path="Lesson7" element={<Lesson7 />} />
+         <Route path="Lesson8" element={<Lesson8 />} />
       </Routes>
     </BrowserRouter>
   )
