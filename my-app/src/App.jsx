@@ -8,6 +8,8 @@ import Lesson2 from "./pages/Lesson2"
 import Lesson3 from "./pages/Lesson3"
 import Lesson4 from "./pages/Lesson4"
 import Lesson5 from "./pages/Lesson5"
+import Lesson6 from "./pages/Lesson6"
+import Lesson7 from "./pages/Lesson7"
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
          <Route path="Lesson3" element={<Lesson3 />} />
          <Route path="Lesson4" element={<Lesson4 />} />
          <Route path="Lesson5" element={<Lesson5 />} />
+         <Route path="Lesson6" element={<Lesson6 />} />
+         <Route path="Lesson7" element={<Lesson7 />} />
       </Routes>
     </BrowserRouter>
   )
