@@ -60,8 +60,8 @@ function Quest() {
     { id: "Lesson10_done", title: "Div / Section", desc: "แบ่งส่วนหน้าเว็บ", exp: 20, next: "Lesson9_done", path: "/Lesson10" },
     { id: "Lesson11_done", title: "Table", desc: "สร้างตาราง", exp: 30, next: "Lesson10_done", path: "/Lesson11" },
     { id: "Lesson12_done", title: "Media", desc: "วิดีโอ/เสียง", exp: 30, next: "Lesson11_done", path: "/Lesson12" },
-    { id: "boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "Lesson12_done", path: "/boss1" },
-    { id: "boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "Lesson12_done", path: "/boss2" },
+    { id: "Boss1", title: "🔥 Final Quest 01", desc: "สร้างเว็บครบ", exp: 200, next: "Lesson12_done", path: "/Boss1" },
+    { id: "Boss2", title: "💀 Final Quest 02", desc: "เว็บระดับสูง", exp: 300, next: "Lesson12_done", path: "/Boss2" },
   ]
 
   // 🔓 เช็ค unlock

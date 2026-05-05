@@ -14,6 +14,9 @@ import Lesson8 from "./pages/Lesson8"
 import Lesson9 from "./pages/Lesson9"
 import Lesson10 from "./pages/Lesson10"
 import Lesson11 from "./pages/Lesson11"
+import Lesson12 from "./pages/Lesson12"
+import Boss1 from "./pages/Boss1"
+import Boss2 from "./pages/Boss2"
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
          <Route path="Lesson9" element={<Lesson9 />} />
          <Route path="Lesson10" element={<Lesson10 />} />
          <Route path="Lesson11" element={<Lesson11 />} />
+         <Route path="Lesson12" element={<Lesson12 />} />
+         <Route path="Boss1" element={<Boss1 />} />
+         <Route path="Boss2" element={<Boss2 />} />
       </Routes>
     </BrowserRouter>
   )
